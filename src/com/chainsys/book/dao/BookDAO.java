@@ -9,5 +9,9 @@ public interface BookDAO {
 
 	Set<Book> findAll();
 
+	Book findById(int id);
+
+	void update(Book book);
+
 
 }
