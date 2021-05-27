@@ -1,5 +1,6 @@
 package com.chainsys.book.dao;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +23,10 @@ public interface BookDAO {
 	List<Date> findAllDate();
 
 	List<String> findAllName();
+
+	Book findByName(String name);
+
+	Book findByDate(LocalDate date);
 
 
 }

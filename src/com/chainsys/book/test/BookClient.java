@@ -40,7 +40,7 @@ public class BookClient {
 			break;
 		case 2:
 			System.out.println("Update the Book Name Based on the Id");
-			date = "03/06/2002";
+			date = "06/06/2002";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 			Book updateBook = new Book(6, "Now you see me", LocalDate.parse(date, dateFormat));
 			try {
@@ -77,8 +77,26 @@ public class BookClient {
 			datelist = service. findAllDate();
 			System.out.println(datelist);
 			break;
-
-			
+		case 7:
+			System.out.println("Find the Book By Id");
+			System.out.println("Enter the Book Id");
+			id = scanner.nextInt();
+			try {
+				Book book = service.findById(id);
+				System.out.println(book);
+			} catch (BookNotFoundException e) {
+			}
+			break;
+		case 8:
+			System.out.println("Find the Book By Name");
+			System.out.println("Enter the Book Name");
+			name = scanner.next();
+			try {
+				Book book = service.findByName(name);
+				System.out.println(book);
+			} catch (BookNotFoundException e) {
+			}
+			break;
 		
 	}
 

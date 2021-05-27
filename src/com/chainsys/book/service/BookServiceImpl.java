@@ -1,5 +1,6 @@
 package com.chainsys.book.service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,7 @@ public class BookServiceImpl implements BookService{
 
 	}
 	
+	
 	@Override
 	public void delete(int id) throws BookNotFoundException {
 		Book Book = dao.findById(id);
@@ -75,6 +77,38 @@ public class BookServiceImpl implements BookService{
 	public List<Date> findAllDate() {
 		// TODO Auto-generated method stub
 		return dao.findAllDate();
+	}
+	
+	@Override
+	public  Book findByDate(LocalDate date) throws  BookNotFoundException {
+		 Book  Book = dao.findByDate(date);
+		if ( Book == null) {
+			throw new  BookNotFoundException("Publish Date Not Found");
+		} else {
+			return  Book;
+		}
+	}
+
+	
+	@Override
+	public Book findById(int id) throws  BookNotFoundException {
+		Book Book = dao.findById(id);
+		if (Book == null) {
+			throw new BookNotFoundException("Book Id Not Found");
+		} else {
+			return Book;
+		}
+	}
+
+
+	@Override
+	public Book findByName(String name) throws BookNotFoundException {
+		 Book  Book = dao.findByName(name);
+		if ( Book == null) {
+			throw new  BookNotFoundException("Book Name Not Found");
+		} else {
+			return  Book;
+		}
 	}
 
 

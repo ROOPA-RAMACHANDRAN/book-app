@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -146,5 +147,38 @@ public class BookDAOImpl implements BookDAO{
 			e.printStackTrace();
 		}
 		return datelist;
+	}
+	
+	@Override
+	public Book findByName(String name) {
+		Book book = null;
+		try {
+			pstmt = con.prepareStatement("select * from book_2590 where name=?");
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				book = new Book(rs.getInt("id"), rs.getString("name"), rs.getDate("publish_date").toLocalDate());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return book;
+	}
+	
+	@Override
+	public  Book findByDate(LocalDate publishDate) {
+		Book book = null;
+		try {
+			pstmt = con.prepareStatement("select * from book_2590 where publish_date=?");
+			pstmt.setDate(1, Date.valueOf(publishDate));
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				book = new Book(rs.getInt("id"), rs.getString("name"), rs.getDate("publish_date").toLocalDate());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return book;
 	}
 }
