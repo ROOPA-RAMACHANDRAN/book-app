@@ -1,5 +1,7 @@
 package com.chainsys.book.dao;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import com.chainsys.book.model.Book;
@@ -14,6 +16,12 @@ public interface BookDAO {
 	void update(Book book);
 
 	void delete(int id);
+
+	List<Integer> findAllId();
+
+	List<Date> findAllDate();
+
+	List<String> findAllName();
 
 
 }

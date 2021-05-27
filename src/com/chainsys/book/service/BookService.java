@@ -1,5 +1,7 @@
 package com.chainsys.book.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import com.chainsys.book.exception.BookNotFoundException;
@@ -15,6 +17,12 @@ public interface BookService {
 	void update(Book Book) throws BookNotFoundException;
 
 	void delete(int id) throws BookNotFoundException;
+
+	List<String> findAllName();
+
+	List<Integer> findAllId();
+
+	List<Date> findAllDate();
 
 	
 

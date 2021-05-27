@@ -1,5 +1,7 @@
 package com.chainsys.book.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -53,4 +55,27 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
+
+
+	@Override
+	public List<String> findAllName() {
+		// TODO Auto-generated method stub
+		return dao.findAllName();
+	}
+
+
+	@Override
+	public List<Integer> findAllId() {
+		// TODO Auto-generated method stub
+		return dao.findAllId();
+	}
+
+
+	@Override
+	public List<Date> findAllDate() {
+		// TODO Auto-generated method stub
+		return dao.findAllDate();
+	}
+
+
 }
