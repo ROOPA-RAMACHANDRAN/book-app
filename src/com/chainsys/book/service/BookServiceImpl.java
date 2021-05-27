@@ -35,6 +35,17 @@ public class BookServiceImpl implements BookService{
 		}
 
 	}
+	
+	@Override
+	public void delete(int id) throws BookNotFoundException {
+		Book Book = dao.findById(id);
+		if (Book == null) {
+			throw new BookNotFoundException("Product doesn't exist!!");
+		} else {
+			dao.delete(id);
+		}
+	}
+
 
 
 	@Override

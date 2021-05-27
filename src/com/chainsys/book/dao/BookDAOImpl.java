@@ -71,6 +71,21 @@ public class BookDAOImpl implements BookDAO{
 		}
 		return book;
 	}
+	
+	
+	@Override
+	public void delete(int id) {
+		try {
+			pstmt = con.prepareStatement("delete book_2590 where id=?");
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	
 	@Override
 	public void update(Book book) {
 		// TODO Auto-generated method stub

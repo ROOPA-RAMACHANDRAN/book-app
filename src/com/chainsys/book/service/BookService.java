@@ -14,6 +14,8 @@ public interface BookService {
 
 	void update(Book Book) throws BookNotFoundException;
 
+	void delete(int id) throws BookNotFoundException;
+
 	
 
 }

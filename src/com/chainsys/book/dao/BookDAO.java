@@ -13,5 +13,7 @@ public interface BookDAO {
 
 	void update(Book book);
 
+	void delete(int id);
+
 
 }

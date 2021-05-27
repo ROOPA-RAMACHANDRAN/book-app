@@ -28,7 +28,7 @@ public class BookClient {
 			System.out.println("Adding a Book");
 			date = "03/06/2002";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			Book newBook = new Book(8, "Now you see me", LocalDate.parse(date, dateFormat));
+			Book newBook = new Book(6, "Now you see me", LocalDate.parse(date, dateFormat));
 			service.save(newBook);
 			bookSet = service.findAll();
 			System.out.println(bookSet);
@@ -46,6 +46,19 @@ public class BookClient {
 
 			}
 			break;
+		case 3:
+			System.out.println("Deleting a Product");
+			System.out.println("Enter the Product Id");
+			id = scanner.nextInt();
+			try {
+				service.delete(id);
+				bookSet = service.findAll();
+				System.out.println(bookSet);
+			} catch (BookNotFoundException e) {
+			}
+			break;
+
+			
 		
 	}
 
