@@ -23,13 +23,17 @@ public interface BookService {
 
 	List<Integer> findAllId();
 
-	List<Date> findAllDate();
+	List<LocalDate> findAllDate();
 
 	Book findById(int id) throws BookNotFoundException;
 
 	Book findByName(String name) throws BookNotFoundException;
 
 	Book findByDate(LocalDate date) throws BookNotFoundException;
+
+//	void delete_date(LocalDate publish_date);
+
+	
 
 	
 

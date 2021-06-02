@@ -1,13 +1,14 @@
 package com.chainsys.book.dao;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
 import com.chainsys.book.model.Book;
 
 public interface BookDAO {
+	
 	void save(Book book);
 
 	Set<Book> findAll();
@@ -20,13 +21,15 @@ public interface BookDAO {
 
 	List<Integer> findAllId();
 
-	List<Date> findAllDate();
+	List<LocalDate> findAllDate();
 
 	List<String> findAllName();
 
 	Book findByName(String name);
 
 	Book findByDate(LocalDate date);
+
+
 
 
 }

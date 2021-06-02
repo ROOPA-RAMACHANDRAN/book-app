@@ -6,4 +6,4 @@ insert into book_2590 values(4, 'Harry Potter', '10-11-2012');
 insert into book_2590 values(5, 'Little Princess', '13-01-2014');
 
 commit;
-select * from book_2591;
+select * from book_2590;

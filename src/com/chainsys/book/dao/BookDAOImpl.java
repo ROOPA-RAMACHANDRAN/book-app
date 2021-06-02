@@ -1,6 +1,7 @@
 package com.chainsys.book.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Date;
 
+
+import com.chainsys.book.exception.BookNotFoundException;
 import com.chainsys.book.model.Book;
 
 
@@ -22,12 +24,12 @@ public class BookDAOImpl implements BookDAO{
 	private static Set<Book> bookSet;
 	private static ArrayList<String> namelist;
 	private static ArrayList<Integer> idlist;
-	private static ArrayList<Date> datelist;
+	private static ArrayList<LocalDate> datelist;
 	
 	public BookDAOImpl() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.20:1521:EBS1228", "apps", "apps");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.20:1521:DBEBS12", "apps", "apps");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +137,7 @@ public class BookDAOImpl implements BookDAO{
 		return idlist;
 	}
 	@Override
-	public List<Date> findAllDate(){
+	public List<LocalDate> findAllDate(){
 		try {
 			pstmt = con.prepareStatement("select publish_date from book_2590");
 			rs = pstmt.executeQuery();
@@ -166,11 +168,11 @@ public class BookDAOImpl implements BookDAO{
 	}
 	
 	@Override
-	public  Book findByDate(LocalDate publishDate) {
+	public Book findByDate(LocalDate date){
 		Book book = null;
 		try {
 			pstmt = con.prepareStatement("select * from book_2590 where publish_date=?");
-			pstmt.setDate(1, Date.valueOf(publishDate));
+			pstmt.setDate(1, Date.valueOf(date));
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				book = new Book(rs.getInt("id"), rs.getString("name"), rs.getDate("publish_date").toLocalDate());
@@ -178,7 +180,9 @@ public class BookDAOImpl implements BookDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return book;
+
 	}
-}
+		
+	}
+
