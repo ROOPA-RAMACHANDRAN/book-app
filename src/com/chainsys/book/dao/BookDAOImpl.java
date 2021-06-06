@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 
-import com.chainsys.book.exception.BookNotFoundException;
 import com.chainsys.book.model.Book;
 
 
@@ -24,7 +23,7 @@ public class BookDAOImpl implements BookDAO{
 	private static Set<Book> bookSet;
 	private static ArrayList<String> namelist;
 	private static ArrayList<Integer> idlist;
-	private static ArrayList<LocalDate> datelist;
+	private static ArrayList<Date> datelist;
 	
 	public BookDAOImpl() {
 		try {
@@ -137,7 +136,7 @@ public class BookDAOImpl implements BookDAO{
 		return idlist;
 	}
 	@Override
-	public List<LocalDate> findAllDate(){
+	public List<Date> findAllDate(){
 		try {
 			pstmt = con.prepareStatement("select publish_date from book_2590");
 			rs = pstmt.executeQuery();
@@ -166,6 +165,8 @@ public class BookDAOImpl implements BookDAO{
 		}
 		return book;
 	}
+//	
+	
 	
 	@Override
 	public Book findByDate(LocalDate date){
@@ -183,6 +184,20 @@ public class BookDAOImpl implements BookDAO{
 		return book;
 
 	}
+	@Override
+	public void delete_name(String name) {
+		try {
+			pstmt = con.prepareStatement("delete book_2590 where name=?");
+			pstmt.setString(1, name);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	
 		
 	}
 

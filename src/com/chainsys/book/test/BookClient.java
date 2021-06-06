@@ -1,10 +1,8 @@
 package com.chainsys.book.test;
-
-import java.util.*;
-
 import java.time.LocalDate;
 
 import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -19,7 +17,7 @@ public class BookClient {
 		Set<Book>bookSet;
 		List<String> namelist;
 		List<Integer> idlist;
-		List<LocalDate> datelist;
+		List<Date> datelist;
 		BookService service=new BookServiceImpl();
 		String date;
 		DateTimeFormatter dateFormat;
@@ -35,7 +33,7 @@ public class BookClient {
 			System.out.println("Adding a Book");
 			date = "03/06/2002";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			Book newBook = new Book(7, "Now you see me", LocalDate.parse(date, dateFormat));
+			Book newBook = new Book(3, "Now you see me", LocalDate.parse(date, dateFormat));
 			service.save(newBook);
 			bookSet = service.findAll();
 			System.out.println(bookSet);
@@ -44,7 +42,7 @@ public class BookClient {
 			System.out.println("Update the Book Name Based on the Id");
 			date = "06/06/2002";
 			dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			Book updateBook = new Book(6, "you see me", LocalDate.parse(date, dateFormat));
+			Book updateBook = new Book(3, "Cindrella", LocalDate.parse(date, dateFormat));
 			try {
 				service.update(updateBook);
 				bookSet = service.findAll();
@@ -54,8 +52,8 @@ public class BookClient {
 			}
 			break;
 		case 3:
-			System.out.println("Deleting a Product");
-			System.out.println("Enter the Product Id");
+			System.out.println("Deleting a Book");
+			System.out.println("Enter the Book Id");
 			id = scanner.nextInt();
 			try {
 				service.delete(id);
@@ -89,6 +87,7 @@ public class BookClient {
 			} catch (BookNotFoundException e) {
 			}
 			break;
+			
 		case 8:
 			System.out.println("Find the Book ID By Name");
 			System.out.println("Enter the Book Name");
@@ -99,28 +98,27 @@ public class BookClient {
 			} catch (BookNotFoundException e) {
 			}
 			break;
-		
-//		case 9:
-//			System.out.println("Deleting a Product By Date");
-//			try {
-//				date = "06/05/2021";
-//				dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//				service.delete_date(LocalDate.parse(date, dateFormat));
-//				bookSet = service.findAll();
-//				System.out.println(bookSet);
-//			} catch (BookNotFoundException e) {
-//			}
-//	}
 			
 		case 9:
 			System.out.println("Find the book by publish date");
 			try {
-				date="02/01/2003";
+				date="03/06/2002";
 				dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 				Book book=service.findByDate(LocalDate.parse(date,dateFormat));
 				System.out.println(book);
 			}
 			catch(BookNotFoundException e){		
+			}
+			break;
+		case 10:
+			System.out.println("Deleting a Book");
+			System.out.println("Enter the Book Name");
+			name = scanner.next();
+			try {
+				service.delete_name(name);
+				bookSet = service.findAll();
+				System.out.println(bookSet);
+			} catch (BookNotFoundException e) {
 			}
 			break;
 

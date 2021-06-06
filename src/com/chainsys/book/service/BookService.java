@@ -1,7 +1,7 @@
 package com.chainsys.book.service;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -23,15 +23,15 @@ public interface BookService {
 
 	List<Integer> findAllId();
 
-	List<LocalDate> findAllDate();
+	List<Date> findAllDate();
 
 	Book findById(int id) throws BookNotFoundException;
 
-	Book findByName(String name) throws BookNotFoundException;
-
 	Book findByDate(LocalDate date) throws BookNotFoundException;
 
-//	void delete_date(LocalDate publish_date);
+	Book findByName(String name) throws BookNotFoundException;
+
+	void delete_name(String name)throws BookNotFoundException;
 
 	
 

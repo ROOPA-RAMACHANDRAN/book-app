@@ -21,13 +21,17 @@ public interface BookDAO {
 
 	List<Integer> findAllId();
 
-	List<LocalDate> findAllDate();
+	List<Date> findAllDate();
 
 	List<String> findAllName();
 
 	Book findByName(String name);
 
 	Book findByDate(LocalDate date);
+
+	void delete_name(String name);
+
+	
 
 
 
